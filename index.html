@@ -352,15 +352,15 @@
         </div>
 
         <!-- Add Subscriber View -->
-        <div id="add-subscriber-view" class="view hidden">
-            <div class="max-w-md mx-auto px-4 py-6">
+        <div id="add-subscriber-view" class="view hidden bg-[#F5F5F8] min-h-screen">
+            <div class="max-w-md mx-auto px-4 pt-14">
                 <!-- Header -->
                 <header class="mb-8">
-                    <div class="flex items-center space-x-2">
-                        <button onclick="navigateTo('subscribers')" class="text-ios-blue">
-                            <span class="text-xl">←</span>
+                    <div class="flex items-center">
+                        <button onclick="navigateTo('subscribers')" class="text-ios-blue mr-3">
+                            <span class="text-2xl">←</span>
                         </button>
-                        <h1 class="text-4xl font-bold">Add Subscriber</h1>
+                        <h1 class="text-3xl font-semibold">Add Subscriber</h1>
                     </div>
                 </header>
 
@@ -368,17 +368,24 @@
                 <div class="bg-white rounded-3xl p-6 shadow-sm">
                     <form id="addSubscriberForm" class="space-y-6" onsubmit="handleAddSubscriber(event)">
                         <div>
-                            <label class="block text-gray-500 mb-2">Email</label>
-                            <input 
-                                type="email" 
-                                class="w-full bg-gray-50 rounded-xl px-4 py-3 text-lg border-0 focus:ring-2 focus:ring-ios-blue"
-                                placeholder="Enter email address"
-                                required
-                            >
+                            <label class="block text-gray-600 text-lg mb-2">Email</label>
+                            <div class="relative">
+                                <input 
+                                    type="email" 
+                                    class="w-full bg-[#F5F5F8] rounded-2xl px-4 py-4 text-lg border-0 focus:ring-2 focus:ring-ios-blue"
+                                    placeholder="Enter email address"
+                                    required
+                                >
+                                <div class="absolute right-4 top-1/2 transform -translate-y-1/2">
+                                    <div class="w-6 h-6 rounded-full bg-[#E94E45] flex items-center justify-center">
+                                        <span class="text-white text-lg">...</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <button 
                             type="submit" 
-                            class="w-full bg-ios-blue text-white rounded-xl py-3 text-lg font-medium"
+                            class="w-full bg-[#0A84FF] text-white rounded-2xl py-4 text-lg font-medium hover:bg-[#007AFF] transition-colors"
                         >
                             Add Subscriber
                         </button>
