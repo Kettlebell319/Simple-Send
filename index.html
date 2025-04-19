@@ -185,35 +185,107 @@
 
         <!-- Subscribers View -->
         <div id="subscribers-view" class="view hidden">
-            <div class="max-w-md mx-auto px-4 py-6">
-                <header class="mb-8">
-                    <button onclick="navigateTo('home')" class="text-ios-blue mb-4 flex items-center">
-                        <span class="mr-1">←</span> Back
-                    </button>
-                    <h1 class="text-2xl font-bold text-gray-900">Subscribers</h1>
-                </header>
-                
-                <div class="bg-white rounded-2xl p-6 shadow-sm">
-                    <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-lg font-semibold">Your Subscribers</h2>
-                        <button class="text-ios-blue">Add New</button>
+            <div class="max-w-md mx-auto px-4 py-4">
+                <!-- Header -->
+                <header class="mb-4">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-2">
+                            <button onclick="navigateTo('home')" class="text-ios-blue">
+                                <span class="text-xl">←</span>
+                            </button>
+                            <h1 class="text-2xl font-medium">Subscribers</h1>
+                        </div>
                     </div>
                     
-                    <div class="space-y-4">
-                        <!-- Sample subscribers - replace with dynamic content -->
-                        <div class="flex items-center justify-between py-2 border-b">
-                            <div>
-                                <p class="font-medium">john@example.com</p>
-                                <p class="text-sm text-ios-gray">Subscribed 2 days ago</p>
-                            </div>
-                            <button class="text-red-500">Remove</button>
+                    <!-- Total Count and Add Button -->
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl text-gray-900">Total: 1,142</h2>
+                        <button onclick="navigateTo('add-subscriber')" class="bg-ios-blue text-white px-5 py-1.5 rounded-full text-base font-medium">
+                            Add
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Search Bar -->
+                <div class="mb-4">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
                         </div>
-                        <div class="flex items-center justify-between py-2 border-b">
-                            <div>
-                                <p class="font-medium">sarah@example.com</p>
-                                <p class="text-sm text-ios-gray">Subscribed 5 days ago</p>
+                        <input 
+                            type="search" 
+                            placeholder="Search" 
+                            class="w-full pl-9 pr-4 py-2 bg-gray-100 rounded-lg text-base outline-none"
+                        >
+                    </div>
+                </div>
+
+                <!-- Subscribers List -->
+                <div class="space-y-3" id="subscribersList">
+                    <!-- James -->
+                    <div class="subscriber-item relative overflow-hidden">
+                        <div class="subscriber-content transform transition-transform duration-200 bg-white">
+                            <div class="px-4 py-4 border-b border-gray-100">
+                                <h3 class="text-xl font-normal">James</h3>
+                                <p class="text-gray-600">james@example.com</p>
                             </div>
-                            <button class="text-red-500">Remove</button>
+                        </div>
+                        <div class="delete-action absolute inset-y-0 right-0 flex items-center justify-center w-20 bg-red-500 text-white translate-x-full">
+                            Delete
+                        </div>
+                    </div>
+
+                    <!-- Amanda -->
+                    <div class="subscriber-item relative overflow-hidden">
+                        <div class="subscriber-content transform transition-transform duration-200 bg-white">
+                            <div class="px-4 py-4 border-b border-gray-100">
+                                <h3 class="text-xl font-normal">Amanda</h3>
+                                <p class="text-gray-600">amanda@example.com</p>
+                            </div>
+                        </div>
+                        <div class="delete-action absolute inset-y-0 right-0 flex items-center justify-center w-20 bg-red-500 text-white translate-x-full">
+                            Delete
+                        </div>
+                    </div>
+
+                    <!-- David -->
+                    <div class="subscriber-item relative overflow-hidden">
+                        <div class="subscriber-content transform transition-transform duration-200 bg-white">
+                            <div class="px-4 py-4 border-b border-gray-100">
+                                <h3 class="text-xl font-normal">David</h3>
+                                <p class="text-gray-600">david@example.com</p>
+                            </div>
+                        </div>
+                        <div class="delete-action absolute inset-y-0 right-0 flex items-center justify-center w-20 bg-red-500 text-white translate-x-full">
+                            Delete
+                        </div>
+                    </div>
+
+                    <!-- Emily -->
+                    <div class="subscriber-item relative overflow-hidden">
+                        <div class="subscriber-content transform transition-transform duration-200 bg-white">
+                            <div class="px-4 py-4 border-b border-gray-100">
+                                <h3 class="text-xl font-normal">Emily</h3>
+                                <p class="text-gray-600">emily@example.com</p>
+                            </div>
+                        </div>
+                        <div class="delete-action absolute inset-y-0 right-0 flex items-center justify-center w-20 bg-red-500 text-white translate-x-full">
+                            Delete
+                        </div>
+                    </div>
+
+                    <!-- Michael -->
+                    <div class="subscriber-item relative overflow-hidden">
+                        <div class="subscriber-content transform transition-transform duration-200 bg-white">
+                            <div class="px-4 py-4 border-b border-gray-100">
+                                <h3 class="text-xl font-normal">Michael</h3>
+                                <p class="text-gray-600">michael@example.com</p>
+                            </div>
+                        </div>
+                        <div class="delete-action absolute inset-y-0 right-0 flex items-center justify-center w-20 bg-red-500 text-white translate-x-full">
+                            Delete
                         </div>
                     </div>
                 </div>
@@ -320,6 +392,47 @@
                 </div>
             </div>
         </div>
+
+        <!-- Add Subscriber View -->
+        <div id="add-subscriber-view" class="view hidden">
+            <div class="max-w-md mx-auto px-4 py-4">
+                <!-- Header -->
+                <header class="mb-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <button onclick="navigateTo('subscribers')" class="text-ios-blue">
+                                <span class="text-xl">←</span>
+                            </button>
+                            <h1 class="text-2xl font-medium">Add Subscriber</h1>
+                        </div>
+                        <button type="submit" form="addSubscriberForm" class="text-ios-blue text-base font-medium">
+                            Done
+                        </button>
+                    </div>
+                </header>
+
+                <form id="addSubscriberForm" class="space-y-3" onsubmit="handleAddSubscriber(event)">
+                    <div class="bg-white rounded-lg px-4 py-3">
+                        <label class="block text-xs text-ios-gray mb-1">Name</label>
+                        <input 
+                            type="text" 
+                            class="w-full bg-transparent border-0 p-0 text-base focus:ring-0 placeholder-gray-400"
+                            placeholder="Enter name"
+                            required
+                        >
+                    </div>
+                    <div class="bg-white rounded-lg px-4 py-3">
+                        <label class="block text-xs text-ios-gray mb-1">Email</label>
+                        <input 
+                            type="email" 
+                            class="w-full bg-transparent border-0 p-0 text-base focus:ring-0 placeholder-gray-400"
+                            placeholder="Enter email"
+                            required
+                        >
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <style>
@@ -328,6 +441,17 @@
         }
         .view.active {
             display: block;
+        }
+        .subscriber-item {
+            background: white;
+        }
+        .subscriber-content {
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+        .delete-action {
+            z-index: 0;
         }
     </style>
 
@@ -438,6 +562,123 @@
             const time = document.getElementById('timeButton').textContent;
             document.getElementById('schedulePreview').textContent = `${date} at ${time}`;
             navigateTo('compose');
+        }
+
+        function handleAddSubscriber(event) {
+            event.preventDefault();
+            const form = event.target;
+            const nameInput = form.querySelector('input[type="text"]');
+            const emailInput = form.querySelector('input[type="email"]');
+            
+            // Create new subscriber element with matching design
+            const newSubscriber = document.createElement('div');
+            newSubscriber.className = 'subscriber-item relative overflow-hidden';
+            newSubscriber.innerHTML = `
+                <div class="subscriber-content transform transition-transform duration-200 bg-white">
+                    <div class="px-4 py-4 border-b border-gray-100">
+                        <h3 class="text-xl font-normal">${nameInput.value}</h3>
+                        <p class="text-gray-600">${emailInput.value}</p>
+                    </div>
+                </div>
+                <div class="delete-action absolute inset-y-0 right-0 flex items-center justify-center w-20 bg-red-500 text-white translate-x-full">
+                    Delete
+                </div>
+            `;
+            
+            // Add to list and setup event handlers
+            document.getElementById('subscribersList').prepend(newSubscriber);
+            setupSwipeHandlers(newSubscriber);
+            
+            // Update count, reset form and navigate back
+            updateSubscriberCount();
+            form.reset();
+            navigateTo('subscribers');
+        }
+
+        function setupSwipeHandlers(item) {
+            const content = item.querySelector('.subscriber-content');
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+
+            item.addEventListener('touchstart', e => {
+                isDragging = true;
+                startX = e.touches[0].clientX;
+                
+                // Reset any other opened items
+                document.querySelectorAll('.subscriber-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        const otherContent = otherItem.querySelector('.subscriber-content');
+                        otherContent.style.transform = 'translateX(0)';
+                    }
+                });
+            });
+
+            item.addEventListener('touchmove', e => {
+                if (!isDragging) return;
+                
+                e.preventDefault();
+                currentX = e.touches[0].clientX;
+                const diff = currentX - startX;
+                
+                // Limit swipe to left only and max of -80px (width of delete button)
+                const newX = Math.max(-80, Math.min(0, diff));
+                content.style.transform = `translateX(${newX}px)`;
+            });
+
+            item.addEventListener('touchend', e => {
+                isDragging = false;
+                const diff = currentX - startX;
+                
+                // If swiped more than threshold, snap to -80px, otherwise snap back
+                if (diff < -40) {
+                    content.style.transform = 'translateX(-80px)';
+                } else {
+                    content.style.transform = 'translateX(0)';
+                }
+            });
+
+            // Delete action
+            const deleteAction = item.querySelector('.delete-action');
+            deleteAction.addEventListener('click', () => {
+                item.style.transition = 'all 0.3s ease';
+                item.style.height = '0';
+                item.style.opacity = '0';
+                item.style.marginBottom = '0';
+                
+                setTimeout(() => {
+                    item.remove();
+                    updateSubscriberCount();
+                }, 300);
+            });
+        }
+
+        // Update existing items with new handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.subscriber-item').forEach(setupSwipeHandlers);
+        });
+
+        // Add search functionality
+        document.querySelector('input[type="search"]').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const subscribers = document.querySelectorAll('#subscribers-view .border-b');
+            
+            subscribers.forEach(sub => {
+                const name = sub.querySelector('h3').textContent.toLowerCase();
+                const email = sub.querySelector('p').textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || email.includes(searchTerm)) {
+                    sub.style.display = 'block';
+                } else {
+                    sub.style.display = 'none';
+                }
+            });
+        });
+
+        function updateSubscriberCount() {
+            const count = document.querySelectorAll('.subscriber-item').length;
+            const formattedCount = new Intl.NumberFormat('en-US').format(count);
+            document.querySelector('h2').textContent = `Total: ${formattedCount}`;
         }
     </script>
 </body>
