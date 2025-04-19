@@ -520,7 +520,11 @@
             const form = event.target;
             const emailInput = form.querySelector('input[type="email"]');
             
-            // Create new subscriber element with new design
+            if (!emailInput || !emailInput.value) {
+                return;
+            }
+            
+            // Create new subscriber element
             const newSubscriber = document.createElement('div');
             newSubscriber.className = 'subscriber-item';
             newSubscriber.innerHTML = `
@@ -548,16 +552,25 @@
                 }, 300);
             });
             
-            // Add to list
-            document.getElementById('subscribersList').prepend(newSubscriber);
-            
-            // Reset form and navigate back
-            form.reset();
-            navigateTo('subscribers');
+            // Get the subscribers list
+            const subscribersList = document.getElementById('subscribersList');
+            if (subscribersList) {
+                // Add to list
+                subscribersList.insertBefore(newSubscriber, subscribersList.firstChild);
+                // Update count
+                updateSubscriberCount();
+                // Reset form
+                form.reset();
+                // Navigate back to subscribers view
+                navigateTo('subscribers');
+            }
         }
 
         // Add remove functionality to existing items
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize subscriber count
+            updateSubscriberCount();
+            
             document.querySelectorAll('.remove-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const item = btn.closest('.subscriber-item');
@@ -576,7 +589,10 @@
         function updateSubscriberCount() {
             const count = document.querySelectorAll('.subscriber-item').length;
             const formattedCount = new Intl.NumberFormat('en-US').format(count);
-            document.querySelector('h2').textContent = `Total: ${formattedCount}`;
+            const subscribersTitle = document.querySelector('#subscribers-view h2');
+            if (subscribersTitle) {
+                subscribersTitle.textContent = `Your Subscribers (${formattedCount})`;
+            }
         }
     </script>
 </body>
