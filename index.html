@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Simple Send - Newsletter Tool</title>
+    <link href="./dist/styles.css" rel="stylesheet">
+    <!-- Add iOS meta tags for better mobile experience -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body class="bg-ios-light-gray font-sf-pro min-h-screen">
+    <!-- Status Bar Spacer -->
+    <div class="h-12 bg-white"></div>
+
+    <!-- Main Container -->
+    <div class="max-w-md mx-auto px-4 py-6">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-gray-900">Simple Send</h1>
+            <p class="text-ios-gray mt-1">Your Newsletter Tool</p>
+        </header>
+
+        <!-- Main Navigation Buttons -->
+        <nav class="space-y-4">
+            <!-- Send It Button -->
+            <a href="/compose" 
+               onclick="navigateTo('compose'); return false;"
+               class="block bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow active:scale-98 transform">
+                <div class="flex items-center space-x-4">
+                    <span class="text-4xl">✉️</span>
+                    <div class="flex-1">
+                        <h2 class="text-xl font-semibold text-gray-900">Send It</h2>
+                        <p class="text-ios-gray text-sm">Compose & schedule newsletters</p>
+                    </div>
+                    <span class="text-ios-gray">→</span>
+                </div>
+            </a>
+
+            <!-- Subscribers Button -->
+            <a href="/subscribers" 
+               onclick="navigateTo('subscribers'); return false;"
+               class="block bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow active:scale-98 transform">
+                <div class="flex items-center space-x-4">
+                    <span class="text-4xl">👥</span>
+                    <div class="flex-1">
+                        <h2 class="text-xl font-semibold text-gray-900">Subs</h2>
+                        <p class="text-ios-gray text-sm">Manage your subscriber list</p>
+                    </div>
+                    <span class="text-ios-gray">→</span>
+                </div>
+            </a>
+
+            <!-- Share Button -->
+            <a href="/share" 
+               onclick="navigateTo('share'); return false;"
+               class="block bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow active:scale-98 transform">
+                <div class="flex items-center space-x-4">
+                    <span class="text-4xl">🔗</span>
+                    <div class="flex-1">
+                        <h2 class="text-xl font-semibold text-gray-900">Share</h2>
+                        <p class="text-ios-gray text-sm">Get your subscription link</p>
+                    </div>
+                    <span class="text-ios-gray">→</span>
+                </div>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        function navigateTo(section) {
+            console.log(`Navigating to ${section}`);
+            // Add navigation logic here
+            // For now, we'll just log the action
+        }
+    </script>
+</body>
+</html> 
