@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleSend - Demo Dashboard</title>
+    <link href="styles.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">SimpleSend Demo</h1>
+            <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-500">Demo Mode</span>
+                <a href="profile.html" class="text-indigo-600 hover:text-indigo-500">Profile</a>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Composer Card -->
+            <a href="composer.html" class="block bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center space-x-4">
+                    <span class="text-4xl">✉️</span>
+                    <div>
+                        <h2 class="text-xl font-semibold text-gray-900">Composer</h2>
+                        <p class="text-gray-500">Create and send newsletters</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Subscribers Card -->
+            <a href="subscribers.html" class="block bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center space-x-4">
+                    <span class="text-4xl">👥</span>
+                    <div>
+                        <h2 class="text-xl font-semibold text-gray-900">Subscribers</h2>
+                        <p class="text-gray-500">Manage your subscriber list</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Profile Card -->
+            <a href="profile.html" class="block bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center space-x-4">
+                    <span class="text-4xl">👤</span>
+                    <div>
+                        <h2 class="text-xl font-semibold text-gray-900">Profile</h2>
+                        <p class="text-gray-500">Manage your account settings</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Analytics Card -->
+            <a href="analytics.html" class="block bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center space-x-4">
+                    <span class="text-4xl">📊</span>
+                    <div>
+                        <h2 class="text-xl font-semibold text-gray-900">Analytics</h2>
+                        <p class="text-gray-500">View newsletter performance</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="mt-8">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Recent Activity</h2>
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <ul class="divide-y divide-gray-200">
+                    <li class="p-4">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-green-500">✓</span>
+                            <div>
+                                <p class="text-sm font-medium text-gray-900">Newsletter sent</p>
+                                <p class="text-sm text-gray-500">"Weekly Update #1" to 150 subscribers</p>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-auto">2 hours ago</span>
+                        </div>
+                    </li>
+                    <li class="p-4">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-blue-500">+</span>
+                            <div>
+                                <p class="text-sm font-medium text-gray-900">New subscribers</p>
+                                <p class="text-sm text-gray-500">25 new subscribers joined</p>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-auto">5 hours ago</span>
+                        </div>
+                    </li>
+                    <li class="p-4">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-yellow-500">✎</span>
+                            <div>
+                                <p class="text-sm font-medium text-gray-900">Draft saved</p>
+                                <p class="text-sm text-gray-500">"Product Launch Announcement"</p>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-auto">1 day ago</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

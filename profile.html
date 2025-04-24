@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleSend - Profile (Demo)</title>
+    <link href="styles.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="max-w-2xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-8">
+            <h1 class="text-2xl font-bold text-gray-900">Profile Settings (Demo)</h1>
+            <a href="/" class="text-indigo-600 hover:text-indigo-500">Back to Dashboard</a>
+        </div>
+
+        <!-- Profile Form -->
+        <div class="bg-white shadow rounded-lg p-6">
+            <form id="profileForm" class="space-y-6">
+                <!-- Email Section -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" readonly value="demo@simplesend.com"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-50">
+                </div>
+
+                <!-- Display Name Section -->
+                <div>
+                    <label for="displayName" class="block text-sm font-medium text-gray-700">Display Name</label>
+                    <input type="text" id="displayName" name="displayName" value="Demo User"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                </div>
+
+                <!-- Newsletter Preferences -->
+                <div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">Newsletter Preferences</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="weeklyDigest" name="weeklyDigest" checked
+                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                            <label for="weeklyDigest" class="ml-3 block text-sm font-medium text-gray-700">
+                                Receive weekly digest
+                            </label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="productUpdates" name="productUpdates" checked
+                                class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                            <label for="productUpdates" class="ml-3 block text-sm font-medium text-gray-700">
+                                Receive product updates
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Save Button -->
+                <div class="pt-4">
+                    <button type="submit"
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="mt-8 bg-white shadow rounded-lg p-6 border border-red-200">
+            <h3 class="text-lg font-medium text-red-700 mb-4">Danger Zone</h3>
+            <div class="space-y-4">
+                <div>
+                    <button id="deleteAccount" type="button"
+                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Delete Account
+                    </button>
+                    <p class="mt-2 text-sm text-gray-500">
+                        Once you delete your account, there is no going back. Please be certain.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Demo version - simulate form submission
+        document.getElementById('profileForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Changes saved! (Demo mode)');
+        });
+
+        // Demo version - simulate account deletion
+        document.getElementById('deleteAccount').addEventListener('click', () => {
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                alert('Account deleted! (Demo mode)');
+                window.location.href = '/';
+            }
+        });
+    </script>
+</body>
+</html> 

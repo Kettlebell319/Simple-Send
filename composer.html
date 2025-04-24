@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SimpleSend - Composer</title>
+    <link href="styles.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* iOS-style input focus */
+        input:focus, textarea:focus {
+            outline: none;
+            box-shadow: none;
+        }
+        
+        /* iOS-style button tap state */
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Hide scrollbar for clean iOS look */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* iOS-style safe areas */
+        .safe-area-pb {
+            padding-bottom: env(safe-area-inset-bottom, 1rem);
+        }
+
+        /* iOS-style toolbar button */
+        .format-button {
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+            min-width: 44px; /* Minimum tap target size */
+            min-height: 44px; /* Minimum tap target size */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .format-button:hover {
+            background-color: #f3f4f6;
+        }
+
+        .format-button.active {
+            background-color: #e5e7eb;
+        }
+
+        /* Formatting styles */
+        #content.title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #content.heading {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        #content.body {
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        #content.monospace {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        /* Content styles */
+        #content {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <!-- Top Navigation -->
+    <header class="fixed top-0 left-0 right-0 bg-white border-b border-gray-100 z-10">
+        <div class="flex items-center justify-between px-4 py-3">
+            <button onclick="history.back()" class="text-black">
+                ←
+            </button>
+            <h1 class="text-xl font-semibold">New Newsletter</h1>
+            <button onclick="saveDraft()" class="text-sm text-black">
+                Save Draft
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-16 pb-24 px-4 hide-scrollbar">
+        <!-- Subject Line -->
+        <input type="text" 
+            placeholder="Subject" 
+            class="w-full text-2xl font-semibold mb-6 px-0 border-0 bg-transparent placeholder-gray-400"
+            id="subject">
+
+        <!-- Formatting Toolbar -->
+        <div class="flex items-center space-x-2 mb-4 overflow-x-auto hide-scrollbar py-2 border-b border-gray-100">
+            <!-- Text Style Group -->
+            <div class="flex space-x-2">
+                <button onclick="toggleFormat('title')" class="format-button text-sm" title="Title">
+                    Aa
+                </button>
+                <button onclick="toggleFormat('heading')" class="format-button text-sm" title="Heading">
+                    Heading
+                </button>
+                <button onclick="toggleFormat('body')" class="format-button text-sm" title="Body">
+                    Body
+                </button>
+            </div>
+
+            <div class="w-px h-5 bg-gray-200"></div>
+
+            <!-- Basic Formatting -->
+            <div class="flex space-x-2">
+                <button onclick="toggleFormat('bold')" class="format-button" title="Bold">
+                    <span class="font-bold">B</span>
+                </button>
+                <button onclick="toggleFormat('italic')" class="format-button" title="Italic">
+                    <span class="italic">I</span>
+                </button>
+            </div>
+
+            <div class="w-px h-5 bg-gray-200"></div>
+
+            <!-- Lists -->
+            <div class="flex space-x-2">
+                <button onclick="toggleFormat('bullet')" class="format-button" title="Bullet List">
+                    •
+                </button>
+                <button onclick="toggleFormat('number')" class="format-button" title="Numbered List">
+                    1.
+                </button>
+                <button onclick="toggleFormat('checklist')" class="format-button" title="Checklist">
+                    ☐
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="relative">
+            <textarea 
+                placeholder="Write your newsletter..." 
+                class="w-full h-[calc(100vh-380px)] resize-none border-0 bg-transparent text-lg placeholder-gray-400 hide-scrollbar"
+                id="content"></textarea>
+        </div>
+    </main>
+
+    <!-- Bottom Actions -->
+    <footer class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 safe-area-pb">
+        <div class="px-4 py-3 flex justify-between items-center">
+            <div class="flex space-x-4">
+                <button onclick="showSchedule()" class="text-2xl">🕒</button>
+                <button onclick="showPreview()" class="text-2xl">👁️</button>
+            </div>
+            <button onclick="sendNewsletter()" 
+                class="bg-black text-white px-6 py-2 rounded-full text-sm font-medium">
+                Send Now
+            </button>
+        </div>
+    </footer>
+
+    <!-- Schedule Modal -->
+    <div id="scheduleModal" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden">
+        <div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-xl">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-semibold">Schedule</h3>
+                    <button onclick="closeSchedule()" class="text-gray-500">✕</button>
+                </div>
+                
+                <p class="text-gray-600 mb-6">Set a date and time to send your newsletter.</p>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">Date</label>
+                        <input type="date" class="w-full rounded-lg border border-gray-200 p-3">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">Time</label>
+                        <input type="time" class="w-full rounded-lg border border-gray-200 p-3">
+                    </div>
+                    <button onclick="scheduleNewsletter()" 
+                        class="w-full bg-black text-white p-3 rounded-lg font-medium">
+                        Schedule
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let activeFormats = new Set();
+
+        function toggleFormat(format) {
+            const content = document.getElementById('content');
+            const selection = {
+                start: content.selectionStart,
+                end: content.selectionEnd,
+                text: content.value.substring(content.selectionStart, content.selectionEnd)
+            };
+
+            // Toggle active state on the button
+            const button = event.currentTarget;
+            button.classList.toggle('active');
+
+            let newText = selection.text;
+            
+            switch(format) {
+                case 'title':
+                case 'heading':
+                case 'body':
+                    // Remove any existing classes and add the new one
+                    content.className = content.className
+                        .split(' ')
+                        .filter(c => !['title', 'heading', 'body'].includes(c))
+                        .join(' ');
+                    content.classList.add(format);
+                    return;
+                case 'bold':
+                    newText = `**${selection.text}**`;
+                    break;
+                case 'italic':
+                    newText = `_${selection.text}_`;
+                    break;
+                case 'bullet':
+                    newText = selection.text.split('\n')
+                        .map(line => line.trim() ? `• ${line}` : line)
+                        .join('\n');
+                    break;
+                case 'number':
+                    newText = selection.text.split('\n')
+                        .map((line, i) => line.trim() ? `${i + 1}. ${line}` : line)
+                        .join('\n');
+                    break;
+                case 'checklist':
+                    newText = selection.text.split('\n')
+                        .map(line => line.trim() ? `☐ ${line}` : line)
+                        .join('\n');
+                    break;
+            }
+
+            if (selection.start === selection.end) {
+                // If no text is selected, insert placeholder text
+                content.value = 
+                    content.value.substring(0, selection.start) +
+                    newText +
+                    content.value.substring(selection.end);
+                
+                // Place cursor inside the formatting marks
+                const cursorPos = selection.start + 2;
+                content.setSelectionRange(cursorPos, cursorPos);
+            } else {
+                // If text is selected, wrap it with formatting
+                content.value = 
+                    content.value.substring(0, selection.start) +
+                    newText +
+                    content.value.substring(selection.end);
+                
+                // Keep the text selected
+                content.setSelectionRange(selection.start, selection.start + newText.length);
+            }
+
+            // Keep focus on textarea
+            content.focus();
+        }
+
+        function showSchedule() {
+            document.getElementById('scheduleModal').classList.remove('hidden');
+        }
+
+        function closeSchedule() {
+            document.getElementById('scheduleModal').classList.add('hidden');
+        }
+
+        function saveDraft() {
+            const subject = document.getElementById('subject').value;
+            const content = document.getElementById('content').value;
+            // Save to local storage for demo
+            localStorage.setItem('draft', JSON.stringify({ subject, content }));
+            alert('Draft saved!');
+        }
+
+        function showPreview() {
+            // For demo, just show current content in alert
+            const subject = document.getElementById('subject').value;
+            const content = document.getElementById('content').value;
+            alert(`Preview:\n\nSubject: ${subject}\n\n${content}`);
+        }
+
+        function sendNewsletter() {
+            const subject = document.getElementById('subject').value;
+            if (!subject) {
+                alert('Please add a subject');
+                return;
+            }
+            alert('Newsletter sent! (Demo mode)');
+            history.back();
+        }
+
+        function scheduleNewsletter() {
+            alert('Newsletter scheduled! (Demo mode)');
+            closeSchedule();
+            history.back();
+        }
+
+        // Load draft if exists
+        window.onload = () => {
+            const draft = localStorage.getItem('draft');
+            if (draft) {
+                const { subject, content } = JSON.parse(draft);
+                document.getElementById('subject').value = subject || '';
+                document.getElementById('content').value = content || '';
+            }
+        };
+    </script>
+</body>
+</html> 
